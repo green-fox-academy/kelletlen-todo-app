@@ -1,5 +1,4 @@
-import java.io.BufferedWriter;
-import java.io.FileWriter;
+import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -18,32 +17,15 @@ public class Todo {
           "    -r   Removes an task\n" +
           "    -c   Completes an task");
     } else if (args[0].equals("-l")) {
-      try {
-        Path filePath = Paths.get("./file.txt");
-        List<String> lines = Files.readAllLines(filePath);
-        if (lines.size() > 0) {
-          for (int i = 0; i < lines.size(); i++) {
-            System.out.println((i + 1 + ". ") + lines.get(i));
-          }
-        } else {
-          System.out.println("No todos for today! :)");
-        }
-      } catch (Exception e) {
-        System.out.println("Not today, buddy :(");
-      }
+      ListTasks listTasks1 = new ListTasks();
+      listTasks1.listTasks("file.txt", args);
     } else if (args[0].equals("-a")) {
-      if (args.length < 2) {
-        System.out.println("Unable to add: no task provided");
-      } else {
-        try {
-          FileWriter fstream = new FileWriter("file.txt",true);
-          BufferedWriter out = new BufferedWriter(fstream);
-          out.write("\n" + args[1]);
-          out.close();
-        } catch (Exception e) {
-          System.out.println("Not today, buddy :(");
-        }
-      }
+      AddNewTask addNewTask1 = new AddNewTask();
+      addNewTask1.addNewTask("file.txt", args);
+
+    } else if (args[0].equals("-r")) {
+      RemoveTask removeTask1 = new RemoveTask();
+      removeTask1.removeTask("file.txt", args);
     }
   }
 }
