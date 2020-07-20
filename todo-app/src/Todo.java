@@ -26,6 +26,11 @@ public class Todo {
     } else if (args[0].equals("-r")) {
       RemoveTask removeTask1 = new RemoveTask();
       removeTask1.removeTask("file.txt", args);
+    }else if (args[0].equals("-c")) {
+      CheckTask checkTask1 = new CheckTask();
+      checkTask1.checkTask("file.txt", args);
+    } else {
+      System.out.println("Unsupported argument");
     }
   }
 }

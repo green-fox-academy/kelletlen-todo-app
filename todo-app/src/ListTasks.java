@@ -10,7 +10,11 @@ public class ListTasks {
       List<String> lines = Files.readAllLines(filePath);
       if (lines.size() > 0) {
         for (int i = 0; i < lines.size(); i++) {
-          System.out.println((i + 1 + ". ") + lines.get(i));
+          if (lines.get(i).startsWith("[x]")) {
+            System.out.println(i + 1 + " - " + lines.get(i));
+          } else {
+          System.out.println((i + 1 + " - [ ] ") + lines.get(i));
+          }
         }
       } else {
         System.out.println("No todos for today! :)");
